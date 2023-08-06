@@ -1,5 +1,6 @@
 'use client';
 
+import { ROUTES } from '@/constants';
 import { Info, LayoutDashboard, Loader2, User } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -18,7 +19,7 @@ import { toast } from './ui/toast';
 const MobileMenu = () => {
   const { data: session } = useSession();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [open, setOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const signUserOut = async () => {
     try {
@@ -36,50 +37,43 @@ const MobileMenu = () => {
   return (
     <nav className='fixed bottom-20 left-0 right-0 z-50 flex justify-center md:hidden'>
       <div className='rounded-md shadow-2xl outline outline-2 outline-white dark:outline-slate-900'>
-        <DropdownMenu open={open} onOpenChange={setOpen}>
-          <DropdownMenuTrigger asChild onClick={() => setOpen((prev) => !prev)}>
+        <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+          <DropdownMenuTrigger
+            asChild
+            onClick={() => setIsOpen((prev) => !prev)}
+          >
             <Button variant='outline' size='lg'>
               Menu
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className='w-56'>
-            <DropdownMenuGroup onClick={() => setOpen(false)}>
-              <DropdownMenuItem asChild>
-                {session ? (
+            <DropdownMenuGroup onClick={() => setIsOpen(false)}>
+              {session ? (
+                <DropdownMenuItem onClick={signUserOut} className='gap-1.5'>
+                  <User className='mr-2 h-5 w-5' />
+                  <span>{isLoading ? 'Signing out' : 'Sign out'}</span>
+                  {isLoading && <Loader2 className='h-4 w-4 animate-spin' />}
+                </DropdownMenuItem>
+              ) : (
+                <DropdownMenuItem asChild>
                   <Link
-                    href='/dashboard'
-                    className='flex w-full items-center gap-1.5'
-                  >
-                    <LayoutDashboard className='mr-2 h-5 w-5' />
-                    <span>Dashboard</span>
-                  </Link>
-                ) : (
-                  <Link
-                    href='/login'
+                    href={ROUTES.UI.login}
                     className='flex w-full items-center gap-1.5'
                   >
                     <LayoutDashboard className='mr-2 h-5 w-5' />
                     <span>Sign in</span>
                   </Link>
-                )}
-              </DropdownMenuItem>
+                </DropdownMenuItem>
+              )}
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Link
-                  href='/documentation'
+                  href={ROUTES.UI.about}
                   className='flex w-full items-center gap-1.5'
                 >
                   <Info className='mr-2 h-5 w-5' />
-                  <span>Docs</span>
+                  <span>About</span>
                 </Link>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={signUserOut} className='gap-1.5'>
-                <User className='mr-2 h-5 w-5' />
-                <span>{isLoading ? 'Signing out' : 'Sign out'}</span>
-                {isLoading ? (
-                  <Loader2 className='h-4 w-4 animate-spin' />
-                ) : null}
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </DropdownMenuContent>

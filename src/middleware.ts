@@ -5,13 +5,13 @@ import { withAuth } from 'next-auth/middleware';
 import { NextResponse } from 'next/server';
 
 const redis = new Redis({
-  url: process.env.REDIS_URL,
-  token: process.env.REDIS_SECRET,
+  url: String(process.env.REDIS_URL),
+  token: String(process.env.REDIS_SECRET),
 });
 
 const ratelimit = new Ratelimit({
-  redis: redis,
-  limiter: Ratelimit.slidingWindow(50, '1 h'),
+  redis,
+  limiter: Ratelimit.slidingWindow(100, '1 h'),
 });
 
 export default withAuth(

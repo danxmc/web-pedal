@@ -1,11 +1,11 @@
 import Icons from '@/components/Icons';
+import { ROUTES } from '@/constants';
 import { buttonVariants } from '@/ui/Button';
 import LargeHeading from '@/ui/LargeHeading';
 import Paragraph from '@/ui/Paragraph';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
-
-import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Similarity API | Page not found',
@@ -22,7 +22,7 @@ const PageNotFound: FC = () => {
           variant: 'ghost',
           className: 'w-fit',
         })}
-        href='/'
+        href={ROUTES.UI.home}
       >
         <Icons.ChevronLeft className='mr-2 h-4 w-4' />
         Back to home

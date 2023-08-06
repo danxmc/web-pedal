@@ -2,8 +2,9 @@
 import * as React from 'react';
 
 import { Icons } from '@/components/Icons';
-import { cn } from '@/lib/classNameUtils';
+// import { cn } from '@/lib/classNameUtils';
 import hotToast, { Toaster as HotToaster } from 'react-hot-toast';
+import { cn } from '@/lib/utils/classNameUtils';
 
 export const Toaster = HotToaster;
 

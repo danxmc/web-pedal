@@ -1,3 +1,4 @@
+import { ROUTES } from '@/constants';
 import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
@@ -12,7 +13,10 @@ const Navbar = async () => {
   return (
     <div className='fixed left-0 right-0 top-0 z-50 flex h-20 items-center justify-between border-b border-slate-300 bg-white/75 shadow-sm backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/75'>
       <div className='container mx-auto flex w-full max-w-7xl items-center justify-between'>
-        <Link href='/' className={buttonVariants({ variant: 'link' })}>
+        <Link
+          href={ROUTES.UI.home}
+          className={buttonVariants({ variant: 'link' })}
+        >
           Audio Effects Pedal Board
         </Link>
 
@@ -23,23 +27,23 @@ const Navbar = async () => {
         <div className='hidden gap-4 md:flex'>
           <ThemeToggle />
           <Link
-            href='/about'
+            href={ROUTES.UI.about}
             className={buttonVariants({ variant: 'ghost' })}
           >
             About
           </Link>
           {session ? (
             <>
-              <Link
+              {/* <Link
                 className={buttonVariants({ variant: 'ghost' })}
                 href='/dashboard'
               >
                 Dashboard
-              </Link>
-              <SignOutButton />
+              </Link> */}
+              {/* <SignOutButton /> */}
             </>
           ) : (
-            <SignInButton />
+            // <SignInButton />
           )}
         </div>
       </div>
