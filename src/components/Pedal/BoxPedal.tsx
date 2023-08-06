@@ -111,7 +111,7 @@ const BoxPedal = ({
         );
       }
     },
-    [activePedalNodeRef.current, dispatch, setPotValue]
+    [activePedalNodeRef.current, dispatch, setPotValue, position]
   );
 
   const handleIsActiveToggle = useCallback(
@@ -161,6 +161,7 @@ const BoxPedal = ({
       audioContext.value,
       input.node,
       audioNodes.chain,
+      position,
       dispatch,
       setActivePedal,
       setAudioNodes,
@@ -199,14 +200,7 @@ const BoxPedal = ({
         setAudioNodes(newAudioNodesChain);
       }
     },
-    [
-      audioContext.value,
-      input.node,
-      audioNodes.chain,
-      dispatch,
-      removePedal,
-      setAudioNodes,
-    ]
+    [audioContext.value, input.node, audioNodes.chain, dispatch, setAudioNodes]
   );
 
   return (

@@ -79,14 +79,7 @@ const AddPedalBox = () => {
         setAudioNodes(newAudioNodesChain);
       }
     },
-    [
-      audioContext.value,
-      input.node,
-      audioNodes.chain,
-      dispatch,
-      addPedal,
-      setAudioNodes,
-    ]
+    [audioContext.value, input.node, audioNodes.chain, dispatch, setAudioNodes]
   );
 
   return (

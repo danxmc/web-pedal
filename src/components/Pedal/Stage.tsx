@@ -32,7 +32,7 @@ const Stage = (stageProps: StageProps) => {
       const data = defaultBoard;
       dispatch(setBoard(data));
     }
-  }, [boardsData]);
+  }, [boardsData, dispatch]);
 
   return (
     <>

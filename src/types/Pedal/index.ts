@@ -1,5 +1,3 @@
-import { PingPongDelayNode } from '@/data/PedalNode/Delay/PingPongDelay';
-import { SlapbackDelayNode } from '@/data/PedalNode/Delay/SlapbackDelay';
 import { string, z } from 'zod';
 
 export type BoardType = z.infer<typeof boardSchema>;
@@ -48,6 +46,4 @@ export type PotAudioNode =
   | OscillatorNode
   | PannerNode
   | StereoPannerNode
-  | WaveShaperNode
-  | PingPongDelayNode
-  | SlapbackDelayNode;
+  | WaveShaperNode;
