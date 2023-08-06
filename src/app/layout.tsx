@@ -2,7 +2,7 @@ import MobileMenu from '@/components/MobileMenu';
 import Navbar from '@/components/Navbar';
 import Providers from '@/components/Providers';
 import { Toaster } from '@/components/ui/toast';
-import { cn } from '@/lib/classNameUtils';
+import { cn } from '@/lib/utils/classNameUtils';
 import '@/styles/globals.css';
 import { Inter } from 'next/font/google';
 

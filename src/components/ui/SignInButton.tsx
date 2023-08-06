@@ -25,6 +25,8 @@ const SignInButton: FC<SignInButtonProps> = ({}) => {
         message: 'Please try again later.',
         type: 'error',
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 

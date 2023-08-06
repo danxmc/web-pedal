@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { cn } from '@/lib/classNameUtils';
+import { cn } from '@/lib/utils/classNameUtils';
 import { cva, VariantProps } from 'class-variance-authority';
 
 const headingVariants = cva(

@@ -1,3 +1,4 @@
+import { ROUTES } from '@/constants';
 import { db } from '@/lib/db';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { NextAuthOptions } from 'next-auth';
@@ -62,7 +63,7 @@ export const authOptions: NextAuthOptions = {
       };
     },
     redirect() {
-      return '/dashboard';
+      return ROUTES.UI.about;
     },
   },
 };

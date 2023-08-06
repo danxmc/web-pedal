@@ -12,7 +12,7 @@ datasource db {
 }
 
 model Account {
-  id                String  @id @default(cuid())
+  id                String  @id @default(uuid())
   userId            String
   type              String
   provider          String
@@ -28,24 +28,28 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId])
 }
 
 model Session {
-  id           String   @id @default(cuid())
+  id           String   @id @default(uuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String    @id @default(uuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime?
-  image    String?
-  accounts Account[]
-  sessions Session[]
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  boards        Board[]
 }
 
 model VerificationToken {
@@ -54,4 +58,39 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Board {
+  id     String  @id @default(uuid())
+  name   String
+  user   User    @relation(fields: [userId], references: [id])
+  userId String
+  pedals Pedal[]
+
+  @@index([userId])
+}
+
+model Pedal {
+  id         String  @id @default(uuid())
+  name       String
+  isTemplate Boolean @default(false)
+  isActive   Boolean @default(true)
+  board      Board?  @relation(fields: [boardId], references: [id])
+  boardId    String?
+  pots       Pot[]
+
+  @@index([boardId])
+}
+
+model Pot {
+  id           String   @id @default(uuid())
+  name         String
+  max          Decimal
+  min          Decimal
+  defaultValue Decimal
+  value        Decimal?
+  pedal        Pedal    @relation(fields: [pedalId], references: [id])
+  pedalId      String
+
+  @@index([pedalId])
 }

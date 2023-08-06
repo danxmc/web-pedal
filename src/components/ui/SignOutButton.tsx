@@ -25,6 +25,8 @@ const SignOutButton: FC<SignOutButtonProps> = ({}) => {
         message: 'Please try again later.',
         type: 'error',
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
