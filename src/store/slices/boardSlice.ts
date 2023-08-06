@@ -27,7 +27,7 @@ export const board = createSlice({
       state.pedals = action.payload;
     },
     addPedal: (state, action: PayloadAction<PedalType>) => {
-      if (state.pedals?.length) {
+      if (state.pedals) {
         state.pedals.push(action.payload);
       }
     },
