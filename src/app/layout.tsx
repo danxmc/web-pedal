@@ -20,7 +20,6 @@ export default function RootLayout({
     >
       <body className='min-h-screen bg-slate-50 antialiased dark:bg-slate-900'>
         <Providers>
-          {/* @ts-expect-error Server Component */}
           <Navbar />
           <Toaster position='bottom-right' />
 
