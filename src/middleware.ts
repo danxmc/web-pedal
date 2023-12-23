@@ -2,7 +2,7 @@ import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 import { getToken } from 'next-auth/jwt';
 import { withAuth } from 'next-auth/middleware';
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
 const redis = new Redis({
   url: String(process.env.REDIS_URL),

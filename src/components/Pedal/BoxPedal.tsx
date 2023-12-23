@@ -136,10 +136,7 @@ const BoxPedal = ({
             audioNodes.chain
           );
         }
-        console.log(
-          '🚀 ~ file: BoxPedal.tsx:153 ~ newAudioNodesChain:',
-          newAudioNodesChain
-        );
+
         AudioNodeUtils.disconnectAudioNodesChain(
           audioNodes.chain,
           audioContext.value,
@@ -179,10 +176,6 @@ const BoxPedal = ({
             position,
             audioNodes.chain
           );
-        console.log(
-          '🚀 ~ file: BoxPedal.tsx:177 ~ newAudioNodesChain:',
-          newAudioNodesChain
-        );
 
         AudioNodeUtils.disconnectAudioNodesChain(
           audioNodes.chain,
@@ -204,7 +197,7 @@ const BoxPedal = ({
   );
 
   return (
-    <div className='card-compact card-bordered card glass w-60 shadow-xl'>
+    <div className='card-bordered card glass card-compact w-60 shadow-xl'>
       <div className='card-body'>
         <div className='card-actions justify-start'>
           <RemovePedalButton

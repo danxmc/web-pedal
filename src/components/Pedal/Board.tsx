@@ -30,10 +30,7 @@ const Board = ({ pedals }: BoardProps) => {
   // Line in: Input -> InputBuffer
   // Line out: Output -> Output Buffer
   // Pedal org
-  // console.log(
-  //   '🚀 ~ file: Board.tsx:27 ~ Board ~ audioNodes:',
-  //   audioNodes.chain
-  // );
+
   useEffect(() => {
     if (audioContext.value && input.node) {
       // Instantiate AudioNode(s) from data
@@ -73,30 +70,6 @@ const Board = ({ pedals }: BoardProps) => {
       setAudioNodes([]);
     };
   }, [input.node]);
-
-  // useEffect(() => {
-  // if (input.node && audioContext.value) {
-  // AudioNodeUtils.disconnectAudioNodesChain(
-  //   audioNodes.chain,
-  //   audioContext.value,
-  //   input.node
-  // );
-  // console.log(
-  //   '🚀 ~ file: Board.tsx:87 ~ useEffect ~ audioNodes:',
-  //   audioNodes
-  // );
-  // AudioNodeUtils.connectAudioNodesChain(
-  //   audioNodes.chain,
-  //   audioContext.value,
-  //   input.node
-  // );
-  // }
-  // const newNodeSplits = pedals.map((pedal) =>
-  //   pedal.isActive ? pedal.pots?.length || 0 : 0
-  // );
-
-  // setNodeSplits(newNodeSplits);
-  // }, [audioNodes.chain]);
 
   return (
     <>

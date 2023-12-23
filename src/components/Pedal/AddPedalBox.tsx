@@ -58,10 +58,6 @@ const AddPedalBox = () => {
           node,
           audioNodes.chain
         );
-        console.log(
-          '🚀 ~ file: AddPedalBox.tsx:61 ~ AddPedalBox ~ newAudioNodesChain:',
-          newAudioNodesChain
-        );
 
         AudioNodeUtils.disconnectAudioNodesChain(
           audioNodes.chain,
