@@ -1,5 +1,6 @@
 'use client';
 
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import { store } from '@/store';
 import AudioProcessGraphProvider from '@/store/providers/AudioProcessGraphProvider';
 import UserMediaProvider from '@/store/providers/UserMediaProvider';
@@ -14,15 +15,17 @@ interface ProvidersProps {
 
 const Providers: FC<ProvidersProps> = ({ children }) => {
   return (
-    <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-      <UserMediaProvider>
-        <AudioProcessGraphProvider>
-          <Provider store={store}>
-            <SessionProvider>{children}</SessionProvider>
-          </Provider>
-        </AudioProcessGraphProvider>
-      </UserMediaProvider>
-    </ThemeProvider>
+    <ReactQueryProvider>
+      <SessionProvider>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+          <UserMediaProvider>
+            <AudioProcessGraphProvider>
+              <Provider store={store}>{children}</Provider>
+            </AudioProcessGraphProvider>
+          </UserMediaProvider>
+        </ThemeProvider>
+      </SessionProvider>
+    </ReactQueryProvider>
   );
 };
 
