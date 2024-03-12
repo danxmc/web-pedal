@@ -1,3 +1,4 @@
+// Maybe change name to calculateStepSize or computeIntervalSize
 export function getStepInRange(
   start: number,
   stop: number,
