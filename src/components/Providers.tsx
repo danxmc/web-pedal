@@ -4,10 +4,10 @@ import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import { store } from '@/store';
 import AudioProcessGraphProvider from '@/store/providers/AudioProcessGraphProvider';
 import UserMediaProvider from '@/store/providers/UserMediaProvider';
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider as NextAuthSessionProvider } from 'next-auth/react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import type { FC, ReactNode } from 'react';
-import { Provider } from 'react-redux';
+import { Provider as ReactReduxProvider } from 'react-redux';
 
 interface ProvidersProps {
   children: ReactNode;
@@ -16,10 +16,10 @@ interface ProvidersProps {
 const Providers: FC<ProvidersProps> = ({ children }) => {
   return (
     <ReactQueryProvider>
-      <SessionProvider>
+      <NextAuthSessionProvider>
         <UserMediaProvider>
           <AudioProcessGraphProvider>
-            <Provider store={store}>
+            <ReactReduxProvider store={store}>
               <NextThemesProvider
                 attribute='class'
                 defaultTheme='system'
@@ -28,10 +28,10 @@ const Providers: FC<ProvidersProps> = ({ children }) => {
               >
                 {children}
               </NextThemesProvider>
-            </Provider>
+            </ReactReduxProvider>
           </AudioProcessGraphProvider>
         </UserMediaProvider>
-      </SessionProvider>
+      </NextAuthSessionProvider>
     </ReactQueryProvider>
   );
 };
