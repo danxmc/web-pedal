@@ -14,7 +14,7 @@ import { addPedal } from '@/store/slices/boardSlice';
 import { PedalType } from '@/types/Pedal';
 import upperCase from 'lodash/upperCase';
 import { Fragment, useCallback } from 'react';
-import { Button } from '../ui/Button';
+import { Button } from '@/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,

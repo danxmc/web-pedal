@@ -2,7 +2,7 @@
 import { FC, useState } from 'react';
 
 import { signIn } from 'next-auth/react';
-import { Button } from './Button';
+import { Button } from './button';
 import { toast } from './toast';
 
 /**
@@ -31,7 +31,7 @@ const SignInButton: FC<SignInButtonProps> = ({}) => {
   };
 
   return (
-    <Button onClick={signInWithGoogle} isLoading={isLoading}>
+    <Button onClick={signInWithGoogle}>
       Sign in
     </Button>
   );

@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils/classNameUtils';
 import { signIn } from 'next-auth/react';
 import * as React from 'react';
 import { FC } from 'react';
-import { Button } from './ui/Button';
+import { Button } from './ui/button';
 import { toast } from './ui/toast';
 import GoogleIcon from './Icons/GoogleIcon';
 
@@ -32,7 +32,7 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
   return (
     <div className={cn('flex justify-center', className)} {...props}>
       <Button
-        isLoading={isLoading}
+        // isLoading={isLoading}
         type='button'
         className='w-full max-w-sm bg-slate-200'
         onClick={loginWithGoogle}

@@ -2,7 +2,7 @@
 import { FC, useState } from 'react';
 
 import { signOut } from 'next-auth/react';
-import { Button } from './Button';
+import { Button } from './button';
 import { toast } from './toast';
 
 /**
@@ -31,7 +31,7 @@ const SignOutButton: FC<SignOutButtonProps> = ({}) => {
   };
 
   return (
-    <Button onClick={signUserOut} isLoading={isLoading}>
+    <Button onClick={signUserOut}>
       Sign out
     </Button>
   );

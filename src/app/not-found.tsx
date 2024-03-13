@@ -1,6 +1,6 @@
 import Icons from '@/components/Icons';
 import { ROUTES } from '@/constants';
-import { buttonVariants } from '@/ui/Button';
+import { buttonVariants } from '@/components/ui/button';
 import LargeHeading from '@/ui/LargeHeading';
 import Paragraph from '@/ui/Paragraph';
 import type { Metadata } from 'next';
