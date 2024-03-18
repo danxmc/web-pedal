@@ -1,20 +1,13 @@
 'use client';
 
 import { ROUTES } from '@/constants';
+import { Button } from '@/ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/ui/dropdown-menu';
+import { toast } from '@/ui/toast';
 import { Info, LayoutDashboard, Loader2, User } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Button } from './ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from './ui/DropdownMenu';
-import { toast } from './ui/toast';
 
 const MobileMenu = () => {
   const { data: session } = useSession();

@@ -3,7 +3,7 @@ import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 import Link from 'next/link';
 import { ThemeToggle } from './ThemeToggle';
-import { buttonVariants } from './ui/button';
+import { buttonVariants } from '@/ui/button';
 import SignInButton from './ui/SignInButton';
 import SignOutButton from './ui/SignOutButton';
 

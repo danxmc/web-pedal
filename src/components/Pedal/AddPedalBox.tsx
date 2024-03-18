@@ -12,8 +12,6 @@ import { AudioNodeUtils } from '@/lib/utils';
 import { useAudioProcessGraphContext } from '@/store/providers/AudioProcessGraphProvider';
 import { addPedal } from '@/store/slices/boardSlice';
 import { PedalType } from '@/types/Pedal';
-import upperCase from 'lodash/upperCase';
-import { Fragment, useCallback } from 'react';
 import { Button } from '@/ui/button';
 import {
   DropdownMenu,
@@ -25,7 +23,9 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from '../ui/DropdownMenu';
+} from '@/ui/dropdown-menu';
+import upperCase from 'lodash/upperCase';
+import { Fragment, useCallback } from 'react';
 import Paragraph from '../ui/Paragraph';
 
 const AddPedalBox = () => {

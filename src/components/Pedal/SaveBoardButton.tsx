@@ -1,10 +1,8 @@
-import { ROUTES } from '@/constants';
-import { postBoardForUser } from '@/services/boardsService';
 import { BoardType } from '@/types/Pedal';
-import React, { useState } from 'react';
-import { Button } from '../ui/button';
-import { toast } from '../ui/toast';
+import { Button } from '@/ui/button';
+import { toast } from '@/ui/toast';
 import { useSession } from 'next-auth/react';
+import React, { useState } from 'react';
 
 interface SaveBoardButtonProps {
   board: BoardType;

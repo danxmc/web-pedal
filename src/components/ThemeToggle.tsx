@@ -1,16 +1,15 @@
 'use client';
 
-import * as React from 'react';
 import { useTheme } from 'next-themes';
 
 import { Icons } from '@/components/Icons';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/DropdownMenu';
+} from '@/ui/dropdown-menu';
 
 export function ThemeToggle() {
   const { setTheme } = useTheme();

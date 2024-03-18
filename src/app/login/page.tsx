@@ -1,6 +1,6 @@
 import Icons from '@/components/Icons';
 import UserAuthForm from '@/components/UserAuthForm';
-import { buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/ui/button';
 import LargeHeading from '@/components/ui/LargeHeading';
 import Paragraph from '@/components/ui/Paragraph';
 import { ROUTES } from '@/constants';
