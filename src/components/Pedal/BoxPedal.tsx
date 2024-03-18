@@ -87,12 +87,14 @@ const BoxPedal = ({
 
   const handlePotValueChange = useCallback(
     (
-      e: React.ChangeEvent<HTMLInputElement>,
+      val: number[],
+      triggeredPotName: string,
       triggeredPotIndex: number
     ): void => {
+      console.log('🚀 ~ e:', val, Number(val));
       if (activePedalNodeRef.current) {
-        const targetName = String(e.target.name);
-        const targetValue = Number(e.target.value);
+        const targetValue = Number(val);
+        const targetName = String(triggeredPotName);
 
         // Update AudioNode value
         AudioNodeUtils.setValueToAudioNode(
