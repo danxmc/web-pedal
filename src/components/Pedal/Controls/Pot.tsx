@@ -1,12 +1,11 @@
 'use client';
-import Paragraph from '@/components/ui/Paragraph';
-import { Slider } from '@/ui/slider';
 import { getStepInRange } from '@/lib/utils/stepUtils';
+import { Label } from '@/ui/label';
+import { Slider } from '@/ui/slider';
 import camelCase from 'lodash/camelCase';
 import React, { useMemo } from 'react';
 
 interface PotProps {
-  id: string;
   position: number;
   name: string;
   max: number;
@@ -20,7 +19,6 @@ interface PotProps {
 }
 
 const Pot = ({
-  id,
   position,
   name,
   min,
@@ -33,7 +31,7 @@ const Pot = ({
   return (
     <>
       <Slider
-        id={id}
+        id={`${name}-${position}`}
         name={camelCase(name)}
         min={min}
         max={max}
@@ -43,9 +41,7 @@ const Pot = ({
           handlePotChange(value, camelCase(name), position)
         }
       />
-      <Paragraph className='flex-grow-0' size='xs'>
-        {name}
-      </Paragraph>
+      <Label htmlFor={`${name}-${position}`}>{name}</Label>
     </>
   );
 };

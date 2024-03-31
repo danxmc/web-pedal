@@ -1,23 +1,22 @@
 'use client';
-import Paragraph from '@/components/ui/Paragraph';
+import { Toggle } from '@/ui/toggle';
+import { CirclePower } from 'lucide-react';
 import React from 'react';
 
 interface BypassSwitchProps {
   isActive: boolean;
-  handleToggle: (e: React.MouseEvent<HTMLInputElement, MouseEvent>, isActive: boolean) => void;
+  handleToggle: (pressed: boolean) => void;
 }
 
 const BypassSwitch = ({ isActive, handleToggle }: BypassSwitchProps) => {
   return (
-    <label className='swap'>
-      <input
-        type='checkbox'
-        defaultChecked={isActive ? true : false}
-        onClick={(e) => handleToggle(e, !isActive)}
-      />
-      <Paragraph className='swap-off'>OFF</Paragraph>
-      <Paragraph className='swap-on'>ON</Paragraph>
-    </label>
+    <Toggle
+      defaultChecked={isActive}
+      pressed={isActive}
+      onPressedChange={(pressed) => handleToggle(pressed)}
+    >
+      <CirclePower color={isActive ? 'red' : 'currentColor'} />
+    </Toggle>
   );
 };
 

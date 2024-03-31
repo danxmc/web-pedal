@@ -91,7 +91,6 @@ const BoxPedal = ({
       triggeredPotName: string,
       triggeredPotIndex: number
     ): void => {
-      console.log('🚀 ~ e:', val, Number(val));
       if (activePedalNodeRef.current) {
         const targetValue = Number(val);
         const targetName = String(triggeredPotName);
@@ -117,21 +116,18 @@ const BoxPedal = ({
   );
 
   const handleIsActiveToggle = useCallback(
-    (
-      _e: React.MouseEvent<HTMLInputElement, MouseEvent>,
-      isActive: boolean
-    ): void => {
+    (pressed: boolean): void => {
       if (audioContext.value && input.node) {
         let newAudioNodesChain: Array<AudioNode> = [];
 
         // Add "real" AudioNode to chain if active
-        if (isActive && activePedalNodeRef.current) {
+        if (pressed && activePedalNodeRef.current) {
           newAudioNodesChain = AudioNodeUtils.buildNewChainReplacingNodeAtIndex(
             activePedalNodeRef.current,
             position,
             audioNodes.chain
           );
-        } else if (!isActive && inactivePedalNodeRef.current) {
+        } else if (!pressed && inactivePedalNodeRef.current) {
           newAudioNodesChain = AudioNodeUtils.buildNewChainReplacingNodeAtIndex(
             inactivePedalNodeRef.current,
             position,
@@ -150,7 +146,7 @@ const BoxPedal = ({
           input.node
         );
 
-        dispatch(setActivePedal({ pedalIndex: position, newValue: isActive }));
+        dispatch(setActivePedal({ pedalIndex: position, newValue: pressed }));
         setAudioNodes(newAudioNodesChain);
       }
     },
@@ -212,12 +208,11 @@ const BoxPedal = ({
           {upperCase(name)}
         </Paragraph>
 
-        <div className=' flex flex-grow flex-col items-start justify-center'>
+        <div className='flex flex-grow flex-col items-start justify-center gap-1'>
           {pots.map((pot, potIndex) => (
             <Pot
               key={`${pot.id}-${potIndex}`}
               position={potIndex}
-              id={pot.name}
               name={pot.name}
               max={pot.max}
               min={pot.min}
