@@ -1,9 +1,9 @@
-import Icons from '@/components/Icons';
 import UserAuthForm from '@/components/UserAuthForm';
-import { buttonVariants } from '@/ui/button';
 import LargeHeading from '@/components/ui/LargeHeading';
 import Paragraph from '@/components/ui/Paragraph';
 import { ROUTES } from '@/constants';
+import { buttonVariants } from '@/ui/button';
+import { ChevronLeft } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -26,7 +26,7 @@ const page: FC = () => {
               })}
               href={ROUTES.UI.home}
             >
-              <Icons.ChevronLeft className='mr-2 h-4 w-4' />
+              <ChevronLeft className='mr-2 h-4 w-4' />
               Back to home
             </Link>
 

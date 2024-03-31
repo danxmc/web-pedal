@@ -2,7 +2,6 @@
 
 import { cn } from '@/lib/utils/classNameUtils';
 import { Button } from '@/ui/button';
-import { toast } from '@/ui/toast';
 import { signIn } from 'next-auth/react';
 import * as React from 'react';
 import { FC } from 'react';
@@ -19,11 +18,11 @@ const UserAuthForm: FC<UserAuthFormProps> = ({ className, ...props }) => {
     try {
       await signIn('google');
     } catch (error) {
-      toast({
-        title: 'Error',
-        message: 'There was an error logging in with Google',
-        type: 'error',
-      });
+      // toast({
+      //   title: 'Error',
+      //   message: 'There was an error logging in with Google',
+      //   type: 'error',
+      // });
     } finally {
       setIsLoading(false);
     }

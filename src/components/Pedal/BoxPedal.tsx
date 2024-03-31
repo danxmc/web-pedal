@@ -214,17 +214,15 @@ const BoxPedal = ({
       </CardHeader>
       <CardContent className='flex flex-grow flex-col items-stretch justify-center gap-4'>
         {pots.map((pot, potIndex) => (
-          <div>
-            <Pot
-              key={`${pot.id}-${potIndex}`}
-              position={potIndex}
-              name={pot.name}
-              max={pot.max}
-              min={pot.min}
-              value={pot.value ?? pot.defaultValue}
-              handlePotChange={handlePotValueChange}
-            />
-          </div>
+          <Pot
+            key={`${pot.id}-${potIndex}`}
+            position={potIndex}
+            name={pot.name}
+            max={pot.max}
+            min={pot.min}
+            value={pot.value ?? pot.defaultValue}
+            handlePotChange={handlePotValueChange}
+          />
         ))}
       </CardContent>
       <CardFooter className='flex flex-row items-center justify-between'>

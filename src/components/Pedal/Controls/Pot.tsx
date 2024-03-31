@@ -29,7 +29,7 @@ const Pot = ({
   const step = useMemo(() => getStepInRange(min, max), [min, max]);
 
   return (
-    <>
+    <div>
       <Slider
         id={`${name}-${position}`}
         name={camelCase(name)}
@@ -42,7 +42,7 @@ const Pot = ({
         }
       />
       <Label htmlFor={`${name}-${position}`}>{name}</Label>
-    </>
+    </div>
   );
 };
 
