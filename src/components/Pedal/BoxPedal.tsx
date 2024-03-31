@@ -15,6 +15,13 @@ import BypassLed from './Bypass/BypassLed';
 import BypassSwitch from './Bypass/BypassSwitch';
 import Pot from './Controls/Pot';
 import RemovePedalButton from './RemovePedalButton';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 interface BoxPedalProps {
   position: number;
@@ -195,21 +202,19 @@ const BoxPedal = ({
   );
 
   return (
-    <div className='card-bordered card glass card-compact w-60 shadow-xl'>
-      <div className='card-body'>
-        <div className='card-actions justify-start'>
+    <Card className='h-fit w-60'>
+      <CardHeader className='flex flex-col justify-center'>
+        <div className='justify-start'>
           <RemovePedalButton
             handleRemovePedalFromChain={handleRemovePedal}
             position={position}
           />
         </div>
-
-        <Paragraph className='flex-grow-0 text-end'>
-          {upperCase(name)}
-        </Paragraph>
-
-        <div className='flex flex-grow flex-col items-start justify-center gap-1'>
-          {pots.map((pot, potIndex) => (
+        <CardTitle>{upperCase(name)}</CardTitle>
+      </CardHeader>
+      <CardContent className='flex flex-grow flex-col items-stretch justify-center gap-4'>
+        {pots.map((pot, potIndex) => (
+          <div>
             <Pot
               key={`${pot.id}-${potIndex}`}
               position={potIndex}
@@ -219,18 +224,14 @@ const BoxPedal = ({
               value={pot.value ?? pot.defaultValue}
               handlePotChange={handlePotValueChange}
             />
-          ))}
-        </div>
-
-        <div className='card-actions items-center justify-between'>
-          <BypassLed enabled={isActive} />
-          <BypassSwitch
-            isActive={isActive}
-            handleToggle={handleIsActiveToggle}
-          />
-        </div>
-      </div>
-    </div>
+          </div>
+        ))}
+      </CardContent>
+      <CardFooter className='flex flex-row items-center justify-between'>
+        <BypassLed enabled={isActive} />
+        <BypassSwitch isActive={isActive} handleToggle={handleIsActiveToggle} />
+      </CardFooter>
+    </Card>
   );
 };
 

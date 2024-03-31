@@ -1,9 +1,15 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import { ROUTES } from '@/constants';
-import { Button } from '@/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/ui/dropdown-menu';
-import { toast } from '@/ui/toast';
 import { Info, LayoutDashboard, Loader2, User } from 'lucide-react';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -19,11 +25,11 @@ const MobileMenu = () => {
       setIsLoading(true);
       await signOut();
     } catch (error) {
-      toast({
-        title: 'Error signing out',
-        message: 'Please try again later.',
-        type: 'error',
-      });
+      // toast({
+      //   title: 'Error signing out',
+      //   message: 'Please try again later.',
+      //   type: 'error',
+      // });
     }
   };
 
