@@ -7,4 +7,4 @@ export const UI = {
 export const API = {
   boards: '/api/boards',
   pedals: '/api/pedals',
-};
+} as const;

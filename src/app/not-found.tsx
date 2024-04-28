@@ -1,8 +1,8 @@
-import Icons from '@/components/Icons';
 import { ROUTES } from '@/constants';
-import { buttonVariants } from '@/ui/Button';
+import { buttonVariants } from '@/ui/button';
 import LargeHeading from '@/ui/LargeHeading';
 import Paragraph from '@/ui/Paragraph';
+import { ChevronLeft } from 'lucide-react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { FC } from 'react';
@@ -24,7 +24,7 @@ const PageNotFound: FC = () => {
         })}
         href={ROUTES.UI.home}
       >
-        <Icons.ChevronLeft className='mr-2 h-4 w-4' />
+        <ChevronLeft className='mr-2 h-4 w-4' />
         Back to home
       </Link>
     </section>

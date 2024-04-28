@@ -1,12 +1,14 @@
 import MobileMenu from '@/components/MobileMenu';
 import Navbar from '@/components/Navbar';
 import Providers from '@/components/Providers';
-import { Toaster } from '@/components/ui/toast';
 import { cn } from '@/lib/utils/classNameUtils';
 import '@/styles/globals.css';
-import { Inter } from 'next/font/google';
+import { Inter as FontSans } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
+const fontSans = FontSans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
 
 export default function RootLayout({
   children,
@@ -16,16 +18,25 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={cn('bg-white text-slate-900 antialiased', inter.className)}
+      className='h-full'
+      // className={cn('bg-white text-slate-900 antialiased', fontSans.className)}
+      suppressHydrationWarning
     >
-      <body className='min-h-screen bg-slate-50 antialiased dark:bg-slate-900'>
+      <body
+        className={cn(
+          'relative h-full min-h-screen bg-background font-sans antialiased',
+          fontSans.variable
+        )}
+      >
         <Providers>
           <Navbar />
-          <Toaster position='bottom-right' />
+          {/* <Toaster position='bottom-right' /> */}
 
           <MobileMenu />
 
-          <main>{children}</main>
+          <main className='relative flex min-h-screen flex-col'>
+            <div className='flex-1 flex-grow'>{children}</div>
+          </main>
         </Providers>
 
         {/* Allow more height for mobile menu on mobile */}

@@ -1,7 +1,7 @@
 'use client';
+import { Button } from '@/ui/button';
 import React from 'react';
 import CloseIcon from '../Icons/CloseIcon';
-import { Button } from '../ui/Button';
 
 interface RemovePedalProps {
   position: number;

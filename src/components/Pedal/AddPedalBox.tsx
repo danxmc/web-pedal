@@ -1,5 +1,16 @@
 'use client';
-import { Icons } from '@/components/Icons';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 import {
   DistortionPedal,
   DynamicPedal,
@@ -12,21 +23,10 @@ import { AudioNodeUtils } from '@/lib/utils';
 import { useAudioProcessGraphContext } from '@/store/providers/AudioProcessGraphProvider';
 import { addPedal } from '@/store/slices/boardSlice';
 import { PedalType } from '@/types/Pedal';
+import { Button } from '@/ui/button';
 import upperCase from 'lodash/upperCase';
+import { Plus } from 'lucide-react';
 import { Fragment, useCallback } from 'react';
-import { Button } from '../ui/Button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
-  DropdownMenuTrigger,
-} from '../ui/DropdownMenu';
-import Paragraph from '../ui/Paragraph';
 
 const AddPedalBox = () => {
   const {
@@ -79,62 +79,64 @@ const AddPedalBox = () => {
   );
 
   return (
-    <div className='card-compact card-bordered card w-60 border-2 border-dashed border-sky-500 shadow-xl'>
+    <Card className='h-fit w-60 border border-dashed border-sky-500 shadow-xl'>
+      <CardHeader className='flex flex-row justify-center'>
+        <CardTitle>{upperCase('Add Pedal')}</CardTitle>
+      </CardHeader>
+      <CardContent className='flex flex-col items-center justify-center'>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant='ghost' size='lg'>
+              <Plus />
+            </Button>
+          </DropdownMenuTrigger>
+
+          <DropdownMenuPortal>
+            <DropdownMenuContent align='start' forceMount>
+              {Object.entries(pedalCategories).map(
+                ([pedalCategory, pedalSubcategory]) => {
+                  return (
+                    <Fragment key={pedalCategory}>
+                      <DropdownMenuSub>
+                        <DropdownMenuSubTrigger>
+                          {pedalCategory}
+                        </DropdownMenuSubTrigger>
+
+                        <DropdownMenuPortal>
+                          <DropdownMenuSubContent>
+                            {Object.values(pedalSubcategory).map(
+                              (pedalEffects: Object) => {
+                                return Object.values(pedalEffects).map(
+                                  (pedalEffect: PedalType) => (
+                                    <DropdownMenuItem
+                                      key={pedalEffect.name}
+                                      onClick={(e) =>
+                                        handleAddPedal(e, pedalEffect)
+                                      }
+                                    >
+                                      {pedalEffect.name}
+                                    </DropdownMenuItem>
+                                  )
+                                );
+                              }
+                            )}
+                          </DropdownMenuSubContent>
+                        </DropdownMenuPortal>
+                      </DropdownMenuSub>
+
+                      <DropdownMenuSeparator />
+                    </Fragment>
+                  );
+                }
+              )}
+            </DropdownMenuContent>
+          </DropdownMenuPortal>
+        </DropdownMenu>
+      </CardContent>
       <div className='card-body items-center justify-center text-center'>
-        <div className='flex flex-col items-center justify-center'>
-          <Paragraph className='card-title'>{upperCase('Add Pedal')}</Paragraph>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant='ghost' size='lg'>
-                <Icons.Plus />
-              </Button>
-            </DropdownMenuTrigger>
-
-            <DropdownMenuPortal>
-              <DropdownMenuContent align='start' forceMount>
-                {Object.entries(pedalCategories).map(
-                  ([pedalCategory, pedalSubcategory]) => {
-                    return (
-                      <Fragment key={pedalCategory}>
-                        <DropdownMenuSub>
-                          <DropdownMenuSubTrigger>
-                            {pedalCategory}
-                          </DropdownMenuSubTrigger>
-
-                          <DropdownMenuPortal>
-                            <DropdownMenuSubContent>
-                              {Object.values(pedalSubcategory).map(
-                                (pedalEffects: Object) => {
-                                  return Object.values(pedalEffects).map(
-                                    (pedalEffect: PedalType) => (
-                                      <DropdownMenuItem
-                                        key={pedalEffect.name}
-                                        onClick={(e) =>
-                                          handleAddPedal(e, pedalEffect)
-                                        }
-                                      >
-                                        {pedalEffect.name}
-                                      </DropdownMenuItem>
-                                    )
-                                  );
-                                }
-                              )}
-                            </DropdownMenuSubContent>
-                          </DropdownMenuPortal>
-                        </DropdownMenuSub>
-
-                        <DropdownMenuSeparator />
-                      </Fragment>
-                    );
-                  }
-                )}
-              </DropdownMenuContent>
-            </DropdownMenuPortal>
-          </DropdownMenu>
-        </div>
+        <div className='flex flex-col items-center justify-center'></div>
       </div>
-    </div>
+    </Card>
   );
 };
 

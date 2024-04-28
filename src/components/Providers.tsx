@@ -1,12 +1,13 @@
 'use client';
 
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import { store } from '@/store';
 import AudioProcessGraphProvider from '@/store/providers/AudioProcessGraphProvider';
 import UserMediaProvider from '@/store/providers/UserMediaProvider';
-import { SessionProvider } from 'next-auth/react';
-import { ThemeProvider } from 'next-themes';
+import { SessionProvider as NextAuthSessionProvider } from 'next-auth/react';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import type { FC, ReactNode } from 'react';
-import { Provider } from 'react-redux';
+import { Provider as ReactReduxProvider } from 'react-redux';
 
 interface ProvidersProps {
   children: ReactNode;
@@ -14,15 +15,24 @@ interface ProvidersProps {
 
 const Providers: FC<ProvidersProps> = ({ children }) => {
   return (
-    <ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-      <UserMediaProvider>
-        <AudioProcessGraphProvider>
-          <Provider store={store}>
-            <SessionProvider>{children}</SessionProvider>
-          </Provider>
-        </AudioProcessGraphProvider>
-      </UserMediaProvider>
-    </ThemeProvider>
+    <ReactQueryProvider>
+      <NextAuthSessionProvider>
+        <UserMediaProvider>
+          <AudioProcessGraphProvider>
+            <ReactReduxProvider store={store}>
+              <NextThemesProvider
+                attribute='class'
+                defaultTheme='system'
+                enableSystem
+                disableTransitionOnChange
+              >
+                {children}
+              </NextThemesProvider>
+            </ReactReduxProvider>
+          </AudioProcessGraphProvider>
+        </UserMediaProvider>
+      </NextAuthSessionProvider>
+    </ReactQueryProvider>
   );
 };
 
